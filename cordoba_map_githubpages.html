@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Córdoba Reiseführer Karte</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 100vh; width: 100%; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([37.8882, -4.7794], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Marker hinzufügen
+        var stops = [
+            {name: 'Mezquita-Catedral', coords: [37.8796, -4.7793]},
+            {name: 'Puente Romano', coords: [37.8762, -4.7790]},
+            {name: 'Jardines del Alcázar de los Reyes Cristianos', coords: [37.8774, -4.7791]},
+            {name: 'Baños del Alcazar Califal', coords: [37.8765, -4.7790]},
+            {name: 'Judería', coords: [37.8790, -4.7812]},
+            {name: 'Sinagoga de Córdoba', coords: [37.8793, -4.7805]},
+            {name: 'Capilla de San Bartolome', coords: [37.8782, -4.7797]},
+            {name: 'Palacio de Viana', coords: [37.8843, -4.7723]},
+            {name: 'Plaza de las Tendillas', coords: [37.8880, -4.7797]},
+            {name: 'Plaza de la Corredera', coords: [37.8858, -4.7746]},
+            {name: 'Medina Azahara', coords: [37.8799, -4.8280]}
+        ];
+
+        stops.forEach(function(stop) {
+            L.marker(stop.coords).addTo(map).bindPopup(stop.name);
+        });
+    </script>
+</body>
+</html>
